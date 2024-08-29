@@ -38,7 +38,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        if (!Category::find($id)) {
+        $data = Category::find($id);
+        if (!$data) {
             return response()->json([
                 'message' => 'not found'
             ], 404);
@@ -46,7 +47,7 @@ class CategoryController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'data' => Category::find($id)
+            'data' => $data
         ]);
     }
 
@@ -55,7 +56,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (!Category::find($id)) {
+        $category = Category::find($id);
+        if (!$category) {
             return response()->json([
                 'message' => 'not found'
             ], 404);
@@ -65,12 +67,10 @@ class CategoryController extends Controller
             'name' => 'required|string'
         ]);
 
-        $category = Category::find($id);
         $category->update($data);
 
         return response()->json([
             'message' => 'success',
-            'data' => $category
         ], 204);
     }
 
