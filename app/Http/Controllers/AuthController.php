@@ -12,7 +12,8 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email|unique:users',
             'name' => 'required|string',
-            'password' => 'required|string|confirmed|min:6'
+            'password' => 'required|string|confirmed|min:6',
+            'address' => 'required|string'
         ]);
 
         $user = User::create($credentials);
