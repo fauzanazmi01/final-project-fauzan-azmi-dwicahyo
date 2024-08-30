@@ -12,7 +12,10 @@ Route::resource('categories', CategoryController::class)->except(['create', 'edi
 Route::resource('products', ProductController::class)->except(['create', 'edit']);
 
 // has to be on top of orders resource
-Route::get('orders/report', [OrderReportController::class, 'index']);
+Route::middleware([
+    EnforceLoggedIn::class
+])->get('orders/report', [OrderReportController::class, 'index']);
+
 Route::middleware([
     'api',
     EnforceLoggedIn::class
