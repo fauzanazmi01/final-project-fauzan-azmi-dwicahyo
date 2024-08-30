@@ -27,9 +27,10 @@ class CategoryController extends Controller
             'name' => 'required|string'
         ]);
 
-        Category::create($data);
+        $newCategory = Category::create($data);
         return response()->json([
             'message' => 'success',
+            'data' => $newCategory
         ], 201);
     }
 
@@ -71,7 +72,8 @@ class CategoryController extends Controller
 
         return response()->json([
             'message' => 'success',
-        ], 204);
+            'data' => $category
+        ], 201);
     }
 
     /**
@@ -89,6 +91,6 @@ class CategoryController extends Controller
 
         return response()->json([
             'message' => 'success'
-        ], 204);
+        ]);
     }
 }

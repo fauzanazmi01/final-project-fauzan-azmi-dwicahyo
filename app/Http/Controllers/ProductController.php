@@ -34,9 +34,7 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'data' => [
-                'id' => $newProduct->id
-            ]
+            'data' => new ProductResource($newProduct)
         ], 201);
     }
 
@@ -45,7 +43,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        if (!Product::find($id)) {
+        $product = Product::find($id);
+        if (!$product) {
             return response()->json([
                 'message' => 'not found'
             ], 404);
@@ -53,7 +52,7 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'success',
-            'data' => new ProductResource(Product::find($id))
+            'data' => new ProductResource($product)
         ]);
     }
 
@@ -78,7 +77,8 @@ class ProductController extends Controller
         $product->update($data);
         return response()->json([
             'message' => 'success',
-        ], 204);
+            'data' => new ProductResource($product)
+        ], 201);
     }
 
     /**
@@ -96,6 +96,6 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'success'
-        ], 204);
+        ], 201);
     }
 }
