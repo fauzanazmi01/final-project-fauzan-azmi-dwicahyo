@@ -6,7 +6,7 @@ composer install
 ```
 
 1. Migrate database
-2. Generate app key to env
+2. Generate app key to env (make sure your .env file exists and has APP_KEY key with empty value)
 3. Generate jwt secret to env
 
 ```
