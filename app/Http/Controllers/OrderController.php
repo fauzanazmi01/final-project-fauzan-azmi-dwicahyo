@@ -33,8 +33,6 @@ class OrderController extends Controller
             'quantity' => 'required|numeric|int|min:1'
         ]);
 
-        $product = Product::find($data['product_id']);
-
         $data['user_id'] = auth()->user()->id;
         $newOrder = Order::create($data);
 
