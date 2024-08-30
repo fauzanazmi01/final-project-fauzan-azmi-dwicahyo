@@ -3,12 +3,16 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderReportController;
 use App\Http\Controllers\ProductController;
 use App\Http\Middleware\EnforceLoggedIn;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('categories', CategoryController::class)->except(['create', 'edit']);
 Route::resource('products', ProductController::class)->except(['create', 'edit']);
+
+// has to be on top of orders resource
+Route::get('orders/report', [OrderReportController::class, 'index']);
 Route::middleware([
     'api',
     EnforceLoggedIn::class
