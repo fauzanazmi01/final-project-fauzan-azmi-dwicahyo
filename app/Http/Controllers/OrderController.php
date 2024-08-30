@@ -36,7 +36,6 @@ class OrderController extends Controller
         $product = Product::find($data['product_id']);
 
         $data['user_id'] = auth()->user()->id;
-        $data['total_price'] = $data['quantity'] * $product->price;
         $newOrder = Order::create($data);
 
         return response()->json([
@@ -79,9 +78,6 @@ class OrderController extends Controller
             'product_id' => 'required|numeric|int|exists:App\Models\Product,id',
             'quantity' => 'required|numeric|int|min:1'
         ]);
-
-        $product = Product::find($data['product_id']);
-        $data['total_price'] = $data['quantity'] * $product->price;
 
         $order->update($data);
         return response()->json([

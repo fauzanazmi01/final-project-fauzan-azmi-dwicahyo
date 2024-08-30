@@ -27,4 +27,16 @@ class Order extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function ($order) {
+            $order->total_price = $order->product->price * $order->quantity;
+        });
+
+        static::updating(function ($order) {
+            $order->total_price = $order->product->price * $order->quantity;
+        });
+    }
 }
