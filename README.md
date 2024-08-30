@@ -1,47 +1,26 @@
-# me/orders
+# Final Project 1: Laravel Orders
 
-<!-- Initializer for Laravel Todos START  -->
-## TODO
-
-This project was generated using
-([Initializer for Laravel](https://laravel.initializer.dev)). To finish
-the project setup run the following in your terminal:
-
-```shell
-./initialize
+Install packages based on `composer.json`
+```
+composer install
 ```
 
-<!-- Initializer for Laravel Todos END  -->
-## Local Development
+1. Migrate database
+2. Generate app key to env
+3. Generate jwt secret to env
 
-This project uses
-[Laravel Sail](https://laravel.com/docs/sail) to manage
-its local development stack. For more detailed usage instructions take a look at
-the [official documentation](https://laravel.com/docs/sail).
-
-### Links
-
-- **Your Application** http://localhost
-- **Preview Emails via Mailpit** http://localhost:8025
-
-### Start the development server
-
-```shell
-./vendor/bin/sail up
+```
+php artisan migrate
+php artisan key:generate
+php artisan jwt:secret
 ```
 
-You can also use the `-d` option, to start the server in
-the background if you do not care about the logs or still want to use your
-terminal for other things.
-
-### Build frontend assets
-
-```shell
-./vendor/bin/sail npm watch
+(Optional) Seed the database with dummy data
+```
+php artisan db:seed
 ```
 
-### Run Tests
-
-```shell
-./vendor/bin/sail test
+Run the app
+```
+php artisan serve
 ```
