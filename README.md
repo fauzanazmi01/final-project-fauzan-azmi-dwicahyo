@@ -24,3 +24,8 @@ Run the app
 ```
 php artisan serve
 ```
+
+or
+```
+docker compose up --build -d
+```
